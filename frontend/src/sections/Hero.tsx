@@ -1,53 +1,133 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import { SiWhatsapp } from 'react-icons/si'
 import { whatsappHref } from '../lib/links'
 
 export function Hero() {
   const reduce = useReducedMotion()
+  const cardsRef = useRef<HTMLDivElement | null>(null)
+  const [cardsVisible, setCardsVisible] = useState(false)
+  const [parallaxOffset, setParallaxOffset] = useState(0)
+  const highlights = [
+    {
+      title: 'Automatize processos',
+      description: 'Fluxos consistentes para tirar tarefas repetitivas da rotina.',
+    },
+    {
+      title: 'Reduza erros',
+      description: 'Menos retrabalho com regras claras e operação organizada.',
+    },
+    {
+      title: 'Ganhe controle real',
+      description: 'Visibilidade para decidir melhor e crescer com previsibilidade.',
+    },
+  ]
+
+  useEffect(() => {
+    const target = cardsRef.current
+    if (!target) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCardsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' },
+    )
+
+    observer.observe(target)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (reduce) return
+
+    const onScroll = () => {
+      const scrollY = window.scrollY
+      // Keep movement very subtle to avoid distraction.
+      setParallaxOffset(Math.min(scrollY * 0.04, 22))
+    }
+
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [reduce])
 
   return (
     <div
       id="topo"
-      className="relative isolate overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32"
+      className="relative isolate min-h-screen overflow-hidden px-4 pb-[132px] pt-[120px] sm:px-6 sm:pb-[148px] sm:pt-[128px]"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-32 top-0 h-[520px] w-[520px] rounded-full bg-violet-600/25 blur-[120px]" />
-        <div className="absolute -right-24 top-40 h-[480px] w-[480px] rounded-full bg-blue-600/20 blur-[110px]" />
+        {/* Base gradients keep the black background rich, not flat. */}
+        <div className="absolute inset-0 bg-[radial-gradient(110%_75%_at_50%_0%,rgba(59,130,246,0.14)_0%,rgba(2,6,23,0)_62%),radial-gradient(90%_65%_at_15%_78%,rgba(109,40,217,0.14)_0%,rgba(2,6,23,0)_66%)]" />
+        {/* Side vignettes keep focus centered without harsh layers. */}
+        <div className="absolute inset-0 bg-[radial-gradient(68%_130%_at_0%_50%,rgba(2,6,23,0.68)_0%,rgba(2,6,23,0)_70%),radial-gradient(68%_130%_at_100%_50%,rgba(2,6,23,0.68)_0%,rgba(2,6,23,0)_70%)]" />
+        {/* Subtle tech grid for depth without competing with content. */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:58px_58px] opacity-[0.04]" />
+        {/* Asymmetric organic glow blobs avoid an artificial center spotlight. */}
+        <div
+          className="absolute left-[32%] top-[30%] h-[22rem] w-[28rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.075)_0%,rgba(2,6,23,0)_72%)] blur-[112px]"
+          style={{
+            transform: reduce ? undefined : `translate3d(0, ${-parallaxOffset * 0.42}px, 0)`,
+            maskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+          }}
+        />
+        <div
+          className="absolute right-[24%] top-[39%] h-[24rem] w-[30rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.13)_0%,rgba(2,6,23,0)_72%)] blur-[112px]"
+          style={{
+            transform: reduce ? undefined : `translate3d(0, ${parallaxOffset * 0.42}px, 0)`,
+            maskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+          }}
+        />
+        <div
+          className="absolute left-1/2 top-[14%] h-[22rem] w-[min(72vw,46rem)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_50%_45%,rgba(167,139,250,0.18)_0%,rgba(56,189,248,0.11)_42%,rgba(2,6,23,0)_74%)]"
+          style={{ transform: reduce ? undefined : `translate3d(-50%, ${parallaxOffset * 0.5}px, 0)` }}
+        />
         <div className="absolute bottom-0 left-1/2 h-px w-[min(90%,48rem)] -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
         {!reduce ? (
           <motion.div
-            className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-gradient-to-br from-violet-500/15 to-cyan-400/10 blur-3xl"
-            animate={{ opacity: [0.5, 0.85, 0.5], scale: [1, 1.05, 1] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute left-[56%] top-20 h-72 w-80 -translate-x-1/2 rounded-full bg-gradient-to-br from-violet-500/14 to-cyan-400/10 blur-3xl"
+            animate={{ opacity: [0.35, 0.62, 0.35], scale: [1, 1.03, 1], x: [0, 10, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
         ) : null}
       </div>
 
-      <div className="mx-auto max-w-5xl text-center">
+      <div className="relative z-10 mx-auto max-w-5xl text-center">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-violet-200/90"
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-violet-200/90"
         >
           Eden System
         </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.05 }}
-          className="font-display text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[3.5rem]"
-        >
-          Transformo operações manuais em{' '}
-          <span className="bg-gradient-to-r from-violet-300 via-white to-cyan-200 bg-clip-text text-transparent">
-            sistemas escaláveis e confiáveis
-          </span>{' '}
-        </motion.h1>
+        {/* Dedicated glow behind heading to strengthen visual hierarchy */}
+        <div className="relative mx-auto max-w-4xl">
+          {/* Localized heading glow for hierarchy, still off-center and subtle. */}
+          <div className="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-64 w-[min(78vw,44rem)] rounded-full bg-[radial-gradient(circle_at_52%_45%,rgba(139,92,246,0.24)_0%,rgba(56,189,248,0.14)_40%,rgba(2,6,23,0)_74%)] blur-2xl" />
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.72, delay: 0.1, ease: 'easeOut' }}
+            className="relative font-display text-balance text-[clamp(2.25rem,5.2vw,3.65rem)] font-semibold leading-[1.06] tracking-[-0.032em] text-white"
+          >
+            <span className="block whitespace-nowrap">Transformo operações manuais em</span>
+            <span className="bg-gradient-to-r from-violet-300 via-white to-cyan-200 bg-clip-text text-transparent">
+              sistemas escaláveis e confiáveis
+            </span>{' '}
+          </motion.h1>
+        </div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.12 }}
-          className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-zinc-400 sm:text-xl"
+          transition={{ duration: 0.75, delay: 0.2, ease: 'easeOut' }}
+          className="mx-auto mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-400 sm:text-xl"
         >
           Automatize processos, reduza erros e ganhe controle real da sua operação.
           Sem planilhas frágeis, sem retrabalho, sem improviso.
@@ -55,17 +135,17 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.2 }}
-          className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          transition={{ duration: 0.75, delay: 0.3, ease: 'easeOut' }}
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
             href={whatsappHref}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 py-3.5 text-sm font-semibold text-white shadow-xl shadow-[#25D366]/35 transition hover:brightness-110 hover:shadow-[#25D366]/45 sm:w-auto"
+            className="relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[#25D366] px-8 py-3.5 text-sm font-semibold text-white shadow-xl shadow-[#25D366]/35 transition-all duration-300 ease-out before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.28),rgba(255,255,255,0)_72%)] before:opacity-0 before:transition-opacity before:duration-300 before:content-[''] hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_22px_48px_-18px_rgba(37,211,102,0.72)] hover:before:opacity-100 sm:w-auto"
           >
-            <SiWhatsapp aria-hidden className="h-5 w-5 shrink-0" />
-            Falar no WhatsApp
+            <SiWhatsapp aria-hidden className="relative z-[1] h-5 w-5 shrink-0" />
+            <span className="relative z-[1]">Falar no WhatsApp</span>
           </a>
           <a
             href="#servicos"
@@ -77,11 +157,33 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.45 }}
-          className="mt-6 text-sm font-medium text-zinc-400"
+          transition={{ delay: 0.46, duration: 0.7, ease: 'easeOut' }}
+          className="mt-7 text-sm font-medium text-zinc-400"
         >
           Processos manuais custam tempo e dinheiro, resolva isso com engenharia, não com planilhas frágeis e sem controle.
         </motion.p>
+
+        <motion.div
+          ref={cardsRef}
+          initial={false}
+          animate={
+            cardsVisible
+              ? { opacity: 1, y: 0 }
+              : { opacity: reduce ? 1 : 0, y: reduce ? 0 : 22 }
+          }
+          transition={{ duration: 0.78, delay: 0.42, ease: 'easeOut' }}
+          className="mt-12 grid gap-4 text-left sm:mt-14 sm:grid-cols-3"
+        >
+          {highlights.map((item, index) => (
+            <div
+              key={item.title}
+              className={`group relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.035] p-5 shadow-[0_16px_38px_-30px_rgba(76,29,149,0.75)] backdrop-blur-md transition-all duration-300 ease-out before:absolute before:inset-0 before:bg-[linear-gradient(120deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.07)_45%,rgba(255,255,255,0)_100%)] before:opacity-0 before:transition-opacity before:duration-300 before:content-[''] hover:-translate-y-2 hover:border-violet-200/35 hover:bg-white/[0.06] hover:shadow-[0_34px_72px_-34px_rgba(109,40,217,0.78)] hover:before:opacity-100 ${index === 1 ? 'sm:-translate-y-1' : ''}`}
+            >
+              <p className="relative z-[1] text-sm font-semibold text-white">{item.title}</p>
+              <p className="relative z-[1] mt-2 text-sm leading-relaxed text-zinc-400">{item.description}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </div>
   )
