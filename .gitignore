@@ -1,0 +1,7 @@
+# Dependências instaladas na raiz
+/node_modules
+
+# Variáveis locais de ambiente
+/.env
+/.env.local
+/.env.*.local

@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --color-eden-950: #06060a;
+  --color-eden-900: #0c0c12;
+  --color-eden-850: #12121a;
+  --color-eden-violet: #8b5cf6;
+  --color-eden-blue: #3b82f6;
+  --color-eden-cyan: #22d3ee;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-eden-950);
+  color: #e4e4e7;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-eden-violet) 45%, transparent);
+  color: #fafafa;
+}
