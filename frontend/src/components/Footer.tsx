@@ -11,7 +11,7 @@ export function Footer() {
             <img
               src="/brand/logo-horizontal.svg"
               alt="Eden System"
-              className="h-10 w-auto max-w-[220px] opacity-95"
+              className="h-10 w-auto max-w-[240px] opacity-95"
             />
           </div>
           <p className="mt-2 max-w-sm text-sm leading-relaxed text-zinc-500">
