@@ -61,41 +61,12 @@ export function Hero() {
       className="relative isolate min-h-screen overflow-hidden px-4 pb-[132px] pt-[120px] sm:px-6 sm:pb-[148px] sm:pt-[128px]"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* Base gradients keep the black background rich, not flat. */}
-        <div className="absolute inset-0 bg-[radial-gradient(110%_75%_at_50%_0%,rgba(59,130,246,0.14)_0%,rgba(2,6,23,0)_62%),radial-gradient(90%_65%_at_15%_78%,rgba(109,40,217,0.14)_0%,rgba(2,6,23,0)_66%)]" />
-        {/* Side vignettes keep focus centered without harsh layers. */}
-        <div className="absolute inset-0 bg-[radial-gradient(68%_130%_at_0%_50%,rgba(2,6,23,0.68)_0%,rgba(2,6,23,0)_70%),radial-gradient(68%_130%_at_100%_50%,rgba(2,6,23,0.68)_0%,rgba(2,6,23,0)_70%)]" />
-        {/* Subtle tech grid for depth without competing with content. */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:58px_58px] opacity-[0.04]" />
-        {/* Asymmetric organic glow blobs avoid an artificial center spotlight. */}
+        {/* Flat-safe gradient: no grid/stacked overlays that can produce visible blocks. */}
+        <div className="absolute inset-0 bg-[radial-gradient(95%_62%_at_50%_8%,rgba(59,130,246,0.12)_0%,rgba(2,6,23,0)_65%),radial-gradient(72%_48%_at_50%_88%,rgba(109,40,217,0.1)_0%,rgba(2,6,23,0)_70%)]" />
         <div
-          className="absolute left-[32%] top-[30%] h-[22rem] w-[28rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.075)_0%,rgba(2,6,23,0)_72%)] blur-[112px]"
-          style={{
-            transform: reduce ? undefined : `translate3d(0, ${-parallaxOffset * 0.42}px, 0)`,
-            maskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
-          }}
+          className="absolute left-1/2 top-[12%] h-[20rem] w-[min(68vw,40rem)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_50%_45%,rgba(167,139,250,0.14)_0%,rgba(56,189,248,0.08)_44%,rgba(2,6,23,0)_74%)] blur-2xl"
+          style={{ transform: reduce ? undefined : `translate3d(-50%, ${parallaxOffset * 0.35}px, 0)` }}
         />
-        <div
-          className="absolute right-[24%] top-[39%] h-[24rem] w-[30rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.13)_0%,rgba(2,6,23,0)_72%)] blur-[112px]"
-          style={{
-            transform: reduce ? undefined : `translate3d(0, ${parallaxOffset * 0.42}px, 0)`,
-            maskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
-          }}
-        />
-        <div
-          className="absolute left-1/2 top-[14%] h-[22rem] w-[min(72vw,46rem)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_50%_45%,rgba(167,139,250,0.18)_0%,rgba(56,189,248,0.11)_42%,rgba(2,6,23,0)_74%)]"
-          style={{ transform: reduce ? undefined : `translate3d(-50%, ${parallaxOffset * 0.5}px, 0)` }}
-        />
-        <div className="absolute bottom-0 left-1/2 h-px w-[min(90%,48rem)] -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
-        {!reduce ? (
-          <motion.div
-            className="absolute left-[56%] top-20 h-72 w-80 -translate-x-1/2 rounded-full bg-gradient-to-br from-violet-500/14 to-cyan-400/10 blur-3xl"
-            animate={{ opacity: [0.35, 0.62, 0.35], scale: [1, 1.03, 1], x: [0, 10, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        ) : null}
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl text-center">
@@ -117,7 +88,7 @@ export function Hero() {
             transition={{ duration: 0.72, delay: 0.1, ease: 'easeOut' }}
             className="relative font-display text-balance text-[clamp(2.25rem,5.2vw,3.65rem)] font-semibold leading-[1.06] tracking-[-0.032em] text-white"
           >
-            <span className="block whitespace-nowrap">Transformo operações manuais em</span>
+            <span className="block">Transformo operações manuais em</span>
             <span className="bg-gradient-to-r from-violet-300 via-white to-cyan-200 bg-clip-text text-transparent">
               sistemas escaláveis e confiáveis
             </span>{' '}

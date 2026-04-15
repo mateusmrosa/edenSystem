@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-BACKEND=/var/www/html/backend
+BACKEND=/var/www/html
 
 if [ "$(id -u)" = 0 ]; then
   mkdir -p \
