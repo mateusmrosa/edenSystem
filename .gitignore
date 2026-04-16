@@ -1,7 +1,11 @@
 # Dependências instaladas na raiz
 /node_modules
+/dist
 
 # Variáveis locais de ambiente
 /.env
 /.env.local
 /.env.*.local
+
+# Pacote de deploy manual do SPA (gerado por scripts/package-spa-for-hostinger.sh)
+/eden-spa-hostinger.zip
