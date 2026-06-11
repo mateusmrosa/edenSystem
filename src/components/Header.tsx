@@ -1,16 +1,17 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { SiWhatsapp } from 'react-icons/si'
 import { whatsappHref } from '../lib/links'
 
 const nav = [
-  ['Sobre', '#sobre'],
-  ['Serviços', '#servicos'],
-  ['Desafios', '#problemas'],
-  ['Diferenciais', '#diferenciais'],
-  ['Portfólio', '#portfolio'],
-  ['Stack', '#tech'],
-  ['Contato', '#contato'],
+  ['Sobre', '/#sobre'],
+  ['Serviços', '/#servicos'],
+  ['Desafios', '/#problemas'],
+  ['Diferenciais', '/#diferenciais'],
+  ['Portfólio', '/#portfolio'],
+  ['Stack', '/#tech'],
+  ['Contato', '/#contato'],
 ] as const
 
 export function Header() {
@@ -24,13 +25,13 @@ export function Header() {
       className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-eden-950/75 backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3.5 sm:px-6">
-        <a href="#topo" className="group flex items-center">
+        <Link to="/" className="group flex items-center">
           <img
             src="/brand/logo-horizontal.svg"
             alt="Eden System"
             className="h-10 w-auto max-w-[240px] opacity-95 transition group-hover:opacity-100"
           />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
           {nav.map(([label, href]) => (

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 type Props = {
-  id: string
+  id?: string
   children: ReactNode
   className?: string
 }

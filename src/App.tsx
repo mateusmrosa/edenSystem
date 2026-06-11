@@ -1,29 +1,16 @@
-import { Footer } from './components/Footer'
-import { Header } from './components/Header'
-import { About } from './sections/About'
-import { Differentials } from './sections/Differentials'
-import { FinalCta } from './sections/FinalCta'
-import { Hero } from './sections/Hero'
-import { Portfolio } from './sections/Portfolio'
-import { Problems } from './sections/Problems'
-import { Services } from './sections/Services'
-import { Tech } from './sections/Tech'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { SiteLayout } from './components/SiteLayout'
+import { HomePage } from './pages/HomePage'
+import { OrcamentoPage } from './pages/OrcamentoPage'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-eden-950">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Problems />
-        <Differentials />
-        <Portfolio />
-        <Tech />
-        <FinalCta />
-      </main>
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<SiteLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="orcamento" element={<OrcamentoPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   )
 }
