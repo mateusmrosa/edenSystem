@@ -8,7 +8,8 @@ export default function App() {
     <Routes>
       <Route element={<SiteLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="orcamento" element={<OrcamentoPage />} />
+        <Route path="orcamento" element={<Navigate to="/" replace />} />
+        <Route path="orcamento/:slug" element={<OrcamentoPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
