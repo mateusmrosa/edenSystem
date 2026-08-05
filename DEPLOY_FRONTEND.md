@@ -1,4 +1,4 @@
-# Deploy Frontend (Eden System)
+# Deploy Frontend (Eden Systems)
 
 Guia curto para build estático + deploy na Hostinger.
 

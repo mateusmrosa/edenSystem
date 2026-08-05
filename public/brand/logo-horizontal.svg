@@ -5,7 +5,7 @@
   <path d="M25 42h24" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/>
   <path d="M25 60h34" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/>
   <path d="M59 24v36" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/>
-  <text x="104" y="53" fill="#FAFAFA" font-family="Ubuntu,Arial,sans-serif" font-size="42" font-weight="700" letter-spacing="-0.8">Eden Systems</text>
+  <text x="104" y="53" fill="#FAFAFA" font-family="Ubuntu,Arial,sans-serif" font-size="42" font-weight="700" letter-spacing="-0.8">Eden Systemss</text>
   <defs>
     <linearGradient id="g" x1="18" y1="12" x2="66" y2="70" gradientUnits="userSpaceOnUse">
       <stop stop-color="#8B5CF6"/>

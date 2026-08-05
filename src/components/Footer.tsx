@@ -10,7 +10,7 @@ export function Footer() {
           <div className="flex items-center">
             <img
               src="/brand/logo-horizontal.svg"
-              alt="Eden System"
+              alt="Eden Systems"
               className="h-10 w-auto max-w-[240px] opacity-95"
             />
           </div>
@@ -43,7 +43,7 @@ export function Footer() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noreferrer"
-              aria-label="Eden System no LinkedIn"
+              aria-label="Eden Systems no LinkedIn"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0A66C2] text-white shadow-lg shadow-[#0A66C2]/30 transition hover:brightness-110 hover:shadow-[#0A66C2]/40"
             >
               <FaLinkedinIn aria-hidden className="h-[22px] w-[22px]" />
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/5 py-6 text-center text-xs text-zinc-600">
-        © {new Date().getFullYear()} Eden System. Todos os direitos reservados.
+        © {new Date().getFullYear()} Eden Systems. Todos os direitos reservados.
       </div>
     </footer>
   )

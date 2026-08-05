@@ -116,7 +116,7 @@ function FooterCta({ proposal }: { proposal: OrcamentoProposal }) {
           className="flex flex-col items-center gap-4 text-center"
         >
           <p className="max-w-xl text-sm text-zinc-500">
-            Dúvidas ou quer avançar com a proposta? Fale diretamente com a Eden System.
+            Dúvidas ou quer avançar com a proposta? Fale diretamente com a Eden Systems.
           </p>
           <a
             href={whatsappHrefFor(proposal.whatsappMessage)}

@@ -28,7 +28,7 @@ export function Header() {
         <Link to="/" className="group flex items-center">
           <img
             src="/brand/logo-horizontal.svg"
-            alt="Eden System"
+            alt="Eden Systems"
             className="h-10 w-auto max-w-[240px] opacity-95 transition group-hover:opacity-100"
           />
         </Link>

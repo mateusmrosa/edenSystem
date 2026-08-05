@@ -39,7 +39,7 @@ export function Differentials() {
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-400">Diferenciais</p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Por que trabalhar com a Eden System
+            Por que trabalhar com a Eden Systems
           </h2>
         </motion.div>
 

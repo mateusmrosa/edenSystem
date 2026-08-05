@@ -1,4 +1,4 @@
-# Eden System - Identidade Visual
+# Eden Systems - Identidade Visual
 
 ## Conceito
 A marca representa organizacao de processos: um modulo/documento com linhas internas (fluxo) e canto destacado (automacao/evolucao).
@@ -26,6 +26,6 @@ A marca representa organizacao de processos: um modulo/documento com linhas inte
 - Nao distorcer, inclinar ou trocar gradiente da marca.
 
 ## Aplicacao no site
-- Header: simbolo + wordmark textual (Eden System)
+- Header: simbolo + wordmark textual (Eden Systems)
 - Footer: simbolo reduzido + nome
 - Favicon: logo mark

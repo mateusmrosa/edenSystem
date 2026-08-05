@@ -2,7 +2,7 @@
 export const WHATSAPP_NUMBER = '5518981483133'
 
 export const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  'Olá! Vim pelo site da Eden System e quero conversar sobre um projeto.',
+  'Olá! Vim pelo site da Eden Systems e quero conversar sobre um projeto.',
 )}`
 
 export const EMAIL = 'dev@edensystems.com.br'

@@ -1,4 +1,4 @@
-# Docker — Eden System (Laravel API + React estático)
+# Docker — Eden Systems (Laravel API + React estático)
 
 Arquitetura **Opção 2**: `backend/` é a API Laravel; `frontend/` é um SPA React (Vite) gerado como arquivos estáticos copiados para `backend/public/` em produção.
 

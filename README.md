@@ -1,4 +1,4 @@
-# Eden System Frontend
+# Eden Systems Frontend
 
 Frontend em React + Vite (deploy estático), consumindo API externa via `VITE_API_URL`.
 

@@ -76,7 +76,7 @@ export function Hero() {
           transition={{ duration: 0.65, ease: 'easeOut' }}
           className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-violet-200/90"
         >
-          Eden System
+          Eden Systems
         </motion.p>
         {/* Dedicated glow behind heading to strengthen visual hierarchy */}
         <div className="relative mx-auto max-w-4xl">
